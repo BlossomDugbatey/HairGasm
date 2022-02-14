@@ -1,0 +1,37 @@
+<form action="" method="post">
+    <input type="hidden" name="_csrf" value = "<%= csrfToken %>">
+    <div>
+        <label for="phone">Phone No</label>
+        <input type="text" id="phone" name="phone" placeholder="0243483872" required>
+    </div>
+    <br>
+    <div>
+        <label for="book-date">Booking Date</label>
+        <input type="text" id="date" value="<%= slot.date %> " name="date" required>
+    </div>
+    <br>
+    <div>
+    <label for="service-selection">Select A Service</label>
+    <select id="service-selection" name="service" required>
+        <option value="">Choose a service from our list of services</option>
+        <option value="Braiding">Braiding</option>
+        <option value="Pedicure">Pedicure</option>
+        <option value="Manicure">Manicure</option>
+        <option value="Massage">Massage</option>
+        <option value="Hair Care">Hair Care</option>
+        <option value="Weavon">Weavon</option>
+        <option value="Fix Nails">Fix Nails</option>
+    </select>
+    </div>
+    <br>
+    <div>
+        <button type="submit" value="Submit">Book Us</button>
+    </div>
+</form>
+<div>
+    <% if(typeof error != 'undefined'){ %>
+        <div class="failedFeedback"><%= error %> </div>
+    <% } %> <% if(typeof success != 'undefined') {%>
+        <div class="successFeedback"><%= success %> </div>
+    <% } %>
+</div>

@@ -1,0 +1,22 @@
+<div class="index">
+    <div class="slot_text">
+        <h2>Our Slots for bookings</h2>
+    </div>
+    
+    <div class="slots">
+        <!-- <h4>SLOT</h4> -->
+        <% if (typeof slots != 'undefined') {%>
+            <% slots.forEach((slot) => {%>
+                <p>We have <%= slot.quantity %> Slots Available</p>
+                <p>Slot Date: <%= slot.date %></p>
+                <a href="/booking/add-booking/<%= slot._id %> ">Book Us</a>
+                <!-- <hr> -->
+            <%})%> 
+        <%}%> 
+    </div>
+    <div>
+        <a href="/slots/add-slot">Add Slot</a>
+        <!-- <a href="/slot/edit/">Edit Slot</a> -->
+        <a href="/slots/delete">Delete Slot</a>
+    </div>
+</div>

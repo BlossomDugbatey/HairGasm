@@ -1,0 +1,29 @@
+<div>
+    <h2>BOOKINGS</h2>
+</div>
+
+<!-- <div>
+    <% if (typeof bookings != 'undefined') {%>
+        <% bookings.forEach((booking) => {%>
+            <p><%= booking.user.name %> </p>
+            <p>Booking Date: <%= booking.slot.date %></p>
+            <p>Service: <%= booking.service %> </p>
+
+        <% }) %> 
+    <%}%> 
+</div> -->
+
+
+<div>
+    <% if (typeof bookings != 'undefined') {%>
+        <% for(var i = 0; i < users.length; i++) { %>
+            <p><%= users[i].name %> | <%= users[i].phone %></p>
+            <% for(var j = 0; j < bookings.length; j++) { %>
+                <% if(users[i].name == bookings[j].user.name) {%>
+                    <p>Booking Date: <%= bookings[j].slot.date.toDateString() %></p>
+                    <p>Service: <%= bookings[j].service %> </p>
+                <% } %>
+            <% } %>
+        <% } %>
+    <%}%> 
+</div>

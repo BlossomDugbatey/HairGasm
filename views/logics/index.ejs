@@ -1,0 +1,14 @@
+<p>Daily Logics</p>
+
+<ul>
+    <% if(typeof navigations != 'undefined'){%> 
+        <% navigations.forEach(nav => {%>
+            <li>
+                <a href="<%= nav.path %>"><%= nav.name %></a>
+                <span><%= nav.date %></span>
+                <p>Description : <%= nav.description %></p>
+            </li>
+        <%}) %> 
+
+    <%} %> 
+</ul>

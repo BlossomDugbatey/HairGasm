@@ -1,0 +1,38 @@
+/* index page */
+
+.index {
+    background-image: url('../images/slotIndex.jpeg');
+    background-size: cover;
+    text-align: center;
+    height: 60em;
+}
+.slot_text h2 {
+    padding-top: 30px;
+}
+.slots {
+    padding-top: 30px;
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px; */
+    background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* add slot form */
+form {
+    background-image: url('../images/background-article.jpeg');
+    background-size: 35em;
+    /* background-repeat: no-repeat; */
+    height: 35em;
+    width: 500px;
+    padding: 50px;
+}
+.form-element {
+    /* margin: 20px 0; */
+}

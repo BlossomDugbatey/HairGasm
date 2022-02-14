@@ -1,0 +1,186 @@
+body {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  /* .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+  } */
+  
+  /* .navigation-overlay {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  } */
+/*   
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  } */
+  
+  .overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+  }
+  
+  /* .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  } */
+  
+  /* @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  } */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    /* font-family: 'Lato', sans-serif; */
+  }
+
+/* .overlay {
+    background-color: black;
+    color: rgb(255, 249, 241);
+    height: 3em;
+} */
+
+/* main.ejs css */
+.headInfo {
+  background-color: rgb(15, 15, 15);
+  height: 3.5em;
+  display: flex;
+  justify-content: space-between;
+  color: #f1f1f1;
+  padding-top: 20px;
+}
+
+.headInfo h3 {
+  padding-left: 20px;
+}
+nav {
+  padding-right: 20px;
+}
+nav ul {
+  display: flex;
+  list-style-type: none;
+  gap: 2.5em;
+  font-size: 13px;
+}
+nav ul li a {
+  color: rgb(235, 227, 217);
+  text-decoration: none;
+}
+nav ul li a:hover {
+  color: rgb(102, 179, 243);
+  transition: all 1s ease;
+}
+
+/* home css */
+header {
+    background-image: url('../images/header.jpeg');
+    height: 42em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding-top: 15em;
+}
+article {
+    background-repeat:no-repeat;
+    background-position:right center ;
+    background-size: contain;
+}
+.about, .services {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about img {
+    height: 25em;
+    width: 41em;
+}
+.about-text{
+    line-height: 2;
+    margin-top: 8em;
+    height: 12em;
+    width: 30em;
+}
+
+.services img {
+    height: 25em;
+    width: 44em;
+}
+.services-text {
+    line-height: 2;
+    margin-left: 14em;
+    margin-top: 8em;
+    height: 12em;
+    width: 30em;
+}
+.services-text ul {
+    list-style-type: none;
+}
+
+section img {
+    width: 100%;
+    height: 40em;
+}
+
+/* meet the time */
+.team {
+  height: 35em;
+}
+.teamText {
+  text-align: center;
+  line-height: 2;
+  margin-top: 40px;
+}
+
+.teamImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.profile img {
+  height: 15em;
+  width: 15em;
+  border-radius:50%;
+  margin-top: 40px;
+}
+
+footer {
+  color: rgb(247, 241, 241);
+  background-color: black;
+  height: 5em;
+}
