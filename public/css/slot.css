@@ -26,8 +26,8 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
 /* add slot form */
 form {
-    background-image: url('../images/background-article.jpeg');
-    background-size: 35em;
+    /* background-image: url('../images/background-article.jpeg');
+    background-size: 35em; */
     /* background-repeat: no-repeat; */
     height: 35em;
     width: 500px;

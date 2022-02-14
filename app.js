@@ -45,8 +45,8 @@ const appRoute = require("./server/routes/pageRoutes")
 app.use('/', appRoute)
 
 //require user route
-const userRoute = require("./server/routes/bookingRoutes")
-app.use('/user', userRoute)
+const bookingUserRoute = require("./server/routes/bookingRoutes")
+app.use('/user',  bookingUserRoute)
 
 //requiring routes for bookings(/booking)
 const bookingRoute = require("./server/routes/bookingRoutes")
@@ -55,6 +55,10 @@ app.use('/booking', bookingRoute)
 //requiring routes for slots(/slot)
 const slotRoute = require("./server/routes/slotRoutes")
 app.use('/slots', slotRoute)
+
+//routes for login
+const userRoute = require("./server/routes/userRoutes");
+app.use('/', userRoute);
 
 //requiring routes for logics
 const logicRoute = require("./server/routes/logicRoutes")
