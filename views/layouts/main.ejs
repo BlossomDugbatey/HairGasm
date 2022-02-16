@@ -10,23 +10,9 @@
     <title>HairGasm</title>
 </head>
 <body>
-    <div id="navigation" class="headInfo">
-        <h3>HairGasm</h3>
-        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-        <nav class="overlay-content">
-         <ul>
-            <li><a href="/">Home</a></li>
-            <!-- <li><a href="#">About</a></li> -->
-            <!-- <li><a href="#">Services</a></li> -->
-           <li><a href="/booking">Booking</a></li>
-           <li><a href="/slots">Slots</a></li>
-           <li><a href="/add-user">User</a></li>
-           <li><a href="#">Book Us</a></li>
-           <li><a href="/login">Login</a></li>
-            <!-- <a href="/logics">Daily Logics</a> -->
-         </ul>
-        </nav>
-    </div>
+    <% if(typeof loggedIn !== 'undefined' && loggedIn){ %>
+        <%- include("./navbar") %> 
+    <% } %> 
     <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->
 
     <div>

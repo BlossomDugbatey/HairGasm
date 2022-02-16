@@ -40,6 +40,11 @@ app.set("layout", "./layouts/main")
 //setting the engine we want to use (view engine)
 app.set("view engine", "ejs")
 
+//routes for login
+const userRoute = require("./server/routes/userRoutes");
+app.use('/', userRoute);
+
+
 //requiring routes for use(app/home)
 const appRoute = require("./server/routes/pageRoutes")
 app.use('/', appRoute)
@@ -55,10 +60,6 @@ app.use('/booking', bookingRoute)
 //requiring routes for slots(/slot)
 const slotRoute = require("./server/routes/slotRoutes")
 app.use('/slots', slotRoute)
-
-//routes for login
-const userRoute = require("./server/routes/userRoutes");
-app.use('/', userRoute);
 
 //requiring routes for logics
 const logicRoute = require("./server/routes/logicRoutes")

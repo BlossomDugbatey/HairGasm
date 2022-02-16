@@ -6,10 +6,11 @@ exports.login = async(req,res) => {
     res.render('users/login', {title : "Login"})
 }
 
-exports.checkLogin = async(req,res) => {
-
+exports.checkLogin = (req,res) => {
+    // console.log(res);
+    res.redirect('/')
 }
 
-exports.profile = async(req,res) => {
+exports.profile = (req,res) => {
 
 }
