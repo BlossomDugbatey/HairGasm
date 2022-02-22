@@ -9,6 +9,13 @@ const Schema = new mongoose.Schema ({
     },
     password: {
         type: String
+    },
+    active : {
+        type: Boolean,
+        default: true,
+    },
+    role : {
+        type: String
     }
 })
 module.exports = mongoose.model('User', Schema)

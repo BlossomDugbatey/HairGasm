@@ -44,6 +44,8 @@ exports.save = async(req,res) => {
         })
     
         await booking.save()
+        user.role = "user";
+        await user.save()
         //reduce number of slots after saving a successful booking
         slot.quantity -= 1;
         await slot.save()

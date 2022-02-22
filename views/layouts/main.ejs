@@ -10,7 +10,7 @@
     <title>HairGasm</title>
 </head>
 <body>
-    <% if(typeof loggedIn !== 'undefined' && loggedIn){ %>
+    <% if(typeof loggedIn !== 'undefined' && loggedIn || typeof whitelisted !== 'undefined' && whitelisted){ %>
         <%- include("./navbar") %> 
     <% } %> 
     <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->

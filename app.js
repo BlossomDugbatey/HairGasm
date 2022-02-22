@@ -9,6 +9,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const flash = require('express-flash')
 // const cookieSession = require('cookie-session')
 const expressLayouts = require('express-ejs-layouts');
 
@@ -19,6 +20,7 @@ const app = express()
 app.use(express.static('public'));
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
 //cookie-parser
 app.use(cookieParser())
 // mounting express-session 
@@ -26,7 +28,7 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: {secure: false, maxAge: 3 * 60 * 1000 }
 }))
 
 app.use(cors());
@@ -77,7 +79,7 @@ app.use((err, req, res, next) => {
 // app.use(globalErrorHandler);
 
 //port 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`server connected to port: ${PORT}`)
 })
