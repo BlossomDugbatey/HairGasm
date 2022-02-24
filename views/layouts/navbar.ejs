@@ -2,18 +2,15 @@
     <h3>HairGasm</h3>
     <nav class="overlay-content">
      <ul>
-       <% if(typeof user !== 'undefined' && user.role === 'user') {%> 
-       <li><a href="/">Home</a></li>
-       <li><a href="/booking">Booking</a></li>
-       <% } else {%>
-        <li><a href="/slots">Slots</a></li>
-        <li><a href="/add-user">User</a></li>
-        <% } %>
-       <% if(loggedIn){ %>
-       <li><a href="/logout">Logout</a></li>
-       <%} else {%> 
-       <li><a href="/login">Login</a></li>
-       <% } %> 
+      <% if(typeof navigations !== 'undefined'){%> 
+        <% navigations.forEach(nav => {%>
+            <li>
+                <a href="<%= nav.href %>"><%= nav.name %></a>
+            </li>
+        <%}) %> 
+
+    <%} %> 
+     
         <!-- <a href="/logics">Daily Logics</a> -->
      </ul>
     </nav>

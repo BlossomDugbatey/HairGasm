@@ -71,7 +71,27 @@ const checkLoggedIn = (req,res,next) =>{
            return res.redirect('/login')
         }
     }
-    res.locals.user = req.user || {} ;
+    // res.locals.user = req.user || {} ;
+    next();
+}
+const userNavigation = (req,res,next) => {
+    res.locals.user = req.user || {};
+    let navigations = [{href:"/",name:"Home"}];
+    if(req.user) {
+        if(req.user.role === 'user'){
+            let userNav = {href:"/booking", name: "Booking"}; 
+            navigations.push(userNav);
+        }else{
+            let adminNav = [{href:"/booking", name: "Booking"},{href:"/slots", name: "Slots"},{href:"/add-user", name: "Users"}]
+            navigations = navigations.concat(adminNav);
+        }
+    }
+    if(req.isAuthenticated()){
+        navigations.push({href: "/logout", name: "LogOut"});
+    }else{
+        navigations.push({href: "/login", name: "LogIn"});
+    }
+    res.locals.navigations = navigations;
     next();
 }
 
@@ -85,6 +105,7 @@ router.get('/login', controller.login);
 router.post('/login', passport.authenticate("local",{failureRedirect: '/login', failureFlash: true}), controller.checkLogin);
 
 router.use(checkLoggedIn)
+router.use(userNavigation)
 router.get('/profile', controller.profile);
 
 
