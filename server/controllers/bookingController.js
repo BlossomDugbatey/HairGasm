@@ -15,7 +15,6 @@ const getUser = async(phone_number) => {
             password: ""
         })
         user = await newUser.save();
-        console.log(user)
     }
      return user;
 }
@@ -43,17 +42,15 @@ exports.save = async(req,res) => {
             service: req.body.service
         })
     
-        await booking.save()
-        user.role = "user";
-        await user.save()
+        await booking.save();
+        
         //reduce number of slots after saving a successful booking
         slot.quantity -= 1;
         await slot.save()
         if (!user.name){
-            console.log(user)
-            res.render('users/edit', {user, feedback: "Hello, let us know your name.", csrfToken: req.csrfToken()})
+           return res.render('users/edit', {user, feedback: "Hello, let us know your name.", csrfToken: req.csrfToken()})
         }else {
-            res.render('users/index', {feedback: "Thank You" + user.name + "!"})
+           return res.render('users/index', {feedback: "Thank You" + user.name + "!"})
         }
        
         // res.render('bookings/add', {slot, success: "Your booking was successful"})
@@ -73,7 +70,6 @@ exports.save = async(req,res) => {
 exports.updateUser = async(req,res) => {
     let phone_number = req.body.phone_number;
     const user = await User.findOne({phone: phone_number});  
-    console.log(user) 
     user.name = req.body.name;
     user.password = req.body.password;
     await user.save();

@@ -71,10 +71,9 @@ const checkLoggedIn = (req,res,next) =>{
            return res.redirect('/login')
         }
     }
+    res.locals.user = req.user || {} ;
     next();
 }
-
-
 
 router.use(passport.initialize());
 router.use(passport.session());

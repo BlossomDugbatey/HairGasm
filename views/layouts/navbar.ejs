@@ -2,11 +2,13 @@
     <h3>HairGasm</h3>
     <nav class="overlay-content">
      <ul>
+       <% if(typeof user !== 'undefined' && user.role === 'user') {%> 
        <li><a href="/">Home</a></li>
        <li><a href="/booking">Booking</a></li>
-       <li><a href="/slots">Slots</a></li>
-       <li><a href="/add-user">User</a></li>
-       <li><a href="#">Book Us</a></li>
+       <% } else {%>
+        <li><a href="/slots">Slots</a></li>
+        <li><a href="/add-user">User</a></li>
+        <% } %>
        <% if(loggedIn){ %>
        <li><a href="/logout">Logout</a></li>
        <%} else {%> 
