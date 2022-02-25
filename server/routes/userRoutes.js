@@ -5,6 +5,7 @@ const User = require('../models/User')
 
 const passport = require('passport');
 const LocalStrategy = require ('passport-local');
+const bcrypt = require('bcrypt');
 
 
 
@@ -14,7 +15,8 @@ passport.use(
         let user = await User.findOne({phone: username})
         if(user){
             if(user.active){
-                if (user.password === password){
+                const passwordVerified = await bcrypt.compare(password, user.password);
+                if (passwordVerified){
                     return cb(null,user);//verification successful
                     }
             }else{
@@ -51,7 +53,6 @@ const loginTracker = async(req, user) => {
             await user.save();
         }
     }
-    console.log(req.session)
 }
 //white listing home page
 // const whitelist ='/'

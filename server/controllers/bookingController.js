@@ -3,12 +3,14 @@ const Slot = require('../models/Slot')
 const Booking = require('../models/Booking')
 const FailedBooking = require('../models/FailedBooking')
 const User = require('../models/User')
+const bcrypt = require('bcrypt');
 
 //checking if a user exists , if not save and return the user
 const getUser = async(phone_number) => {
     //retrieving user based on phone number
      let user = await User.findOne({phone: phone_number})
      if(!user){
+
         let newUser = new User ({
             name:"",
             phone: phone_number,
@@ -70,8 +72,9 @@ exports.save = async(req,res) => {
 exports.updateUser = async(req,res) => {
     let phone_number = req.body.phone_number;
     const user = await User.findOne({phone: phone_number});  
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
     user.name = req.body.name;
-    user.password = req.body.password;
+    user.password = hashedPassword;
     await user.save();
 
     res.redirect(302, '/booking')
