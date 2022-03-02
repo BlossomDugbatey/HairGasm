@@ -8,7 +8,7 @@
         <% if (typeof slots != 'undefined') {%>
             <% slots.forEach((slot) => {%>
                 <p>We have <%= slot.quantity %> Slots Available</p>
-                <p>Slot Date: <%= slot.date %></p>
+                <p>Slot Date: <%= slot.date.toDateString() %></p>
                 <a href="/booking/add-booking/<%= slot._id %> ">Book Us</a>
                 <!-- <hr> -->
             <%})%> 

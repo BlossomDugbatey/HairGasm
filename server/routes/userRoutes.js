@@ -1,7 +1,8 @@
 const router = require('express').Router();
 
-const controller = require('../controllers/loginController')
-const User = require('../models/User')
+const controller = require('../controllers/loginController');
+const userController = require('../controllers/userController');
+const User = require('../models/User');
 
 const passport = require('passport');
 const LocalStrategy = require ('passport-local');
@@ -25,7 +26,7 @@ passport.use(
 
         }  
          loginTracker(req, user);
-         return cb(null,false, {message: 'Wrong phone number or password!'});//verification failed
+         return cb(null,false, {message: 'Incorrect Details!'});//verification failed
     })
 );
 
@@ -77,13 +78,13 @@ const checkLoggedIn = (req,res,next) =>{
 }
 const userNavigation = (req,res,next) => {
     res.locals.user = req.user || {};
-    let navigations = [{href:"/",name:"Home"}];
+    let navigations = [{href:"/",name:"Home", activeName:"home"}];
     if(req.user) {
         if(req.user.role === 'user'){
-            let userNav = {href:"/booking", name: "Booking"}; 
+            let userNav = {href:"/booking", name: "Booking", activeName: "booking"}; 
             navigations.push(userNav);
         }else{
-            let adminNav = [{href:"/booking", name: "Booking"},{href:"/slots", name: "Slots"},{href:"/add-user", name: "Users"}]
+            let adminNav = [{href:"/booking", name: "Booking", activeName: "booking"},{href:"/slots", name: "Slots", activeName: "slots"},{href:"/users", name: "Users", activeName: "users"}]
             navigations = navigations.concat(adminNav);
         }
     }
@@ -108,6 +109,13 @@ router.post('/login', passport.authenticate("local",{failureRedirect: '/login', 
 router.use(checkLoggedIn)
 router.use(userNavigation)
 router.get('/profile', controller.profile);
+router.get('/users', userController.user);
+router.get('/user-edit/:id', userController.edit);
+router.get('/user-add', userController.add);
+router.get('/user-delete/:id',userController.delete);
+router.post('/user-add', userController.save);
+router.post('/user-edit/:id', userController.update);
+router.post('/user-delete/:id', userController.deleteConfirm)
 
 
 

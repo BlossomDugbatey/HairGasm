@@ -1,1 +1,17 @@
-<h1>User</h1>
+<div>
+    <% if(typeof error != 'undefined'){ %>
+        <div class="failedFeedback"><%= error %> </div>
+    <% } %> <% if(typeof feedback != 'undefined') {%>
+        <div class="successFeedback"><%= feedback %></div>
+    <% } %>
+</div>
+
+<div>
+    <% if (typeof bookings !== 'undefined') {%>
+        <% bookings.forEach((booking) => {%>
+            <p><% booking.slot.date %> </p>
+            <p><% booking.service %></p>
+            <hr>
+        <%})%> 
+    <%}%> 
+</div>

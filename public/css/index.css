@@ -1,163 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&family=Dancing+Script:wght@500&family=Poppins:wght@200;300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Lato', sans-serif;
-  }
-  
-  /* .overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
-    overflow-x: hidden;
-    transition: 0.5s;
-  } */
-  
-  /* .navigation-overlay {
-    position: relative;
-    top: 25%;
-    width: 100%;
-    text-align: center;
-    margin-top: 30px;
-  } */
-/*   
-  .overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  } */
-  
-  .overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-  }
-  
-  /* .overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-  } */
-  
-  /* @media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-    }
-  } */
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    /* font-family: 'Lato', sans-serif; */
-  }
-
-/* .overlay {
-    background-color: black;
-    color: rgb(255, 249, 241);
-    height: 3em;
-} */
+  margin: 0;
+  /* font-family: 'Lato', sans-serif; */
+}
 
 /* main.ejs css */
 .headInfo {
   background-color: rgb(15, 15, 15);
-  height: 3.5em;
+  height: 4em;
   display: flex;
   justify-content: space-between;
   color: #f1f1f1;
-  padding-top: 20px;
+  padding-top: 15px;
+  position: sticky;
 }
 
 .headInfo h3 {
   padding-left: 20px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
 }
+
 nav {
   padding-right: 20px;
 }
+
 nav ul {
   display: flex;
   list-style-type: none;
   gap: 2.5em;
-  font-size: 13px;
+  font-size: 15px;
+  padding-top: 13px;
 }
+
 nav ul li a {
   color: rgb(235, 227, 217);
   text-decoration: none;
 }
-nav ul li a:hover {
+
+nav ul li a:hover{
   color: rgb(102, 179, 243);
-  transition: all 1s ease;
+  transition: all 0.5s ease-in-out;
+}
+.headInfo .activeNav a {
+  color: rgb(18, 97, 161)!important;
+  /* background-color: #240f81; */
 }
 
 /* home css */
 header {
-    background-image: url('../images/header.jpeg');
-    height: 42em;
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-align: center;
-    padding-top: 15em;
+  background-image: url('../images/header.jpeg');
+  height: 42em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding-top: 15em;
 }
+
+header h1 {
+  -webkit-animation: bounce-top 0.9s both;
+  animation: bounce-top 0.9s both;
+}
+
+@keyframes bounce-top {
+  0% {
+    -webkit-transform: translateY(-45px);
+    transform: translateY(-45px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+
+  24% {
+    opacity: 1;
+  }
+
+  40% {
+    -webkit-transform: translateY(-24px);
+    transform: translateY(-24px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  65% {
+    -webkit-transform: translateY(-12px);
+    transform: translateY(-12px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  82% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  93% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  25%,
+  55%,
+  75%,
+  87% {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+
+
 article {
-    background-repeat:no-repeat;
-    background-position:right center ;
-    background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
 }
-.about, .services {
-    display: flex;
-    justify-content: space-between;
+
+.about,
+.services {
+  display: flex;
+  justify-content: space-between;
 }
 
 .about img {
-    height: 25em;
-    width: 41em;
+  height: 25em;
+  width: 41em;
 }
-.about-text{
-    line-height: 2;
-    margin-top: 8em;
-    height: 12em;
-    width: 30em;
+
+.about-text {
+  line-height: 2;
+  margin-top: 8em;
+  height: 12em;
+  width: 30em;
 }
 
 .services img {
-    height: 25em;
-    width: 44em;
+  height: 25em;
+  width: 44em;
 }
+
 .services-text {
-    line-height: 2;
-    margin-left: 14em;
-    margin-top: 8em;
-    height: 12em;
-    width: 30em;
+  line-height: 2;
+  margin-left: 14em;
+  margin-top: 8em;
+  height: 12em;
+  width: 30em;
 }
+
 .services-text ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 section img {
-    width: 100%;
-    height: 40em;
+  width: 100%;
+  height: 40em;
 }
 
-/* meet the time */
+/* meet the team */
 .team {
   height: 35em;
 }
+
 .teamText {
   text-align: center;
   line-height: 2;
@@ -172,6 +199,18 @@ section img {
   text-align: center;
 }
 
+.teamImage img {
+  transition: all transform .5s ease-in-out;
+}
+
+.teamImage img:hover {
+  transform: scale(1.2);
+}
+
+.teamImage h3 {
+  font-size: 20px;
+}
+
 .profile img {
   height: 15em;
   width: 13em;
@@ -179,8 +218,323 @@ section img {
   margin-top: 40px;
 }
 
-footer {
-  color: rgb(247, 241, 241);
+/* login page or form*/
+.login {
+  height: 50em;
   background-color: black;
-  height: 5em;
+}
+
+.circles {
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.each-circle {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.each-circle:first-child {
+  background: linear-gradient(#ad2d18,
+      #f623e6);
+  left: -80px;
+  top: -80px;
+}
+
+.each-circle:last-child {
+  background: linear-gradient(to right,
+      #4920ff,
+      #ffbc03);
+  right: -30px;
+  bottom: -80px;
+}
+
+/* .login-image img {
+  width: 80%;
+} */
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.05);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: white;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+  /* background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3); */
+}
+
+.login form * {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+.login form h3, .booking-form form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+.login label, .booking-form label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.login input, .booking-form input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  outline: none;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.login input ::placeholder, .booking-form input ::placeholder {
+  color: #e5e5e5;
+}
+
+.login button, .booking-form button {
+  margin-top: 40px;
+  width: 100%;
+  background-color: #cec3c3;
+  color: #080710;
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login button:focus, .booking-form button:focus {
+  outline: none;
+}
+
+.login form button:hover{
+  background-color: #f0b8ed;
+  transition: all 1s ease-in-out;
+}
+
+.login form .login-message {
+  background-color: #a70606;
+  -webkit-animation: vibrate-2 0.3s linear infinite both;
+  animation: vibrate-2 0.3s linear infinite both;
+}
+@keyframes bounce-top {
+  0% {
+    -webkit-transform: translateY(-45px);
+            transform: translateY(-45px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    -webkit-transform: translateY(-24px);
+            transform: translateY(-24px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  65% {
+    -webkit-transform: translateY(-12px);
+            transform: translateY(-12px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  82% {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  93% {
+    -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+
+
+/* list of bookings page */
+
+/* add booking form */
+.add-booking {
+  /* background-image: url('../images/loginForm.jpeg'); */
+  height: 40em;
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+}
+/* .booking-image {
+  width: 50%;
+} */
+.booking-form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  /* height: 500px; */
+  top: 50%;
+  left: 50%;
+  background-color: rgb(122 117 117 / 13%);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  border-radius: 10px;
+  padding: 50px 35px;
+}
+
+/* show bookings */
+.bookings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
+
+/* width: 400px;
+
+position: absolute;
+transform: translate(-50%, -50%);
+
+color: white;
+border-radius: 10px;
+backdrop-filter: blur(10px); */
+
+/* page footer */
+footer {
+  padding: 50px 0;
+  color: #f0f9ff;
+  background-color: #000000;
+}
+
+footer h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+footer ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.6;
+}
+
+footer ul a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item:not(.social) {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+}
+
+footer .item.text {
+  margin-bottom: 36px;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item.text {
+    margin-bottom: 0;
+  }
+}
+
+footer .item.text p {
+  opacity: 0.6;
+  margin-bottom: 0;
+}
+
+footer .item.social {
+  text-align: center;
+}
+
+@media (max-width:991px) {
+  .footer-dark .item.social {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+footer .item.social>a {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  margin: 0 8px;
+  color: #fff;
+  opacity: 0.75;
+}
+
+footer .item.social>a:hover {
+  opacity: 0.9;
+}
+
+footer .copyright {
+  text-align: center;
+  padding-top: 24px;
+  opacity: 0.3;
+  font-size: 15px;
+  margin-bottom: 0;
+  font-family: 'Dancing Script', cursive;
 }

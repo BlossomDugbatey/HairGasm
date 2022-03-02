@@ -1,10 +1,10 @@
-<div id="navigation" class="headInfo">
+<div class="headInfo">
     <h3>HairGasm</h3>
-    <nav class="overlay-content">
+    <nav class="navigation">
      <ul>
       <% if(typeof navigations !== 'undefined'){%> 
         <% navigations.forEach(nav => {%>
-            <li>
+            <li class = "<%= (typeof activeNav !== 'undefined' && activeNav == nav.activeName)?'activeNav':''%>">
                 <a href="<%= nav.href %>"><%= nav.name %></a>
             </li>
         <%}) %> 

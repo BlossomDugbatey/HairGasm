@@ -1,0 +1,16 @@
+<h3>USERS</h3>
+<a href="/user-add">Add User</a>
+<div>
+    <% if(typeof users != 'undefined') {%>
+        <% users.forEach((user) => {%>
+          <p>User Name: <%- user.name %> </p>   
+          <p>Phone Number: <%- user.phone %> </p> 
+         
+          <p>User role: <%- user.role %> </p>
+          <p>Status: <%- user.active %> </p>
+          <a href="/user-edit/<%= user._id %>">Edit User</a>
+          <a href="/user-delete/<%= user._id%>">Delete User</a>
+          <hr>
+        <% }) %> 
+    <% } %>   
+</div>

@@ -1,29 +1,22 @@
 <div>
     <% if(typeof error != 'undefined'){ %>
-        <div class="failedFeedback"><%= error %> </div>
+    <div class="failedFeedback"><%= error %> </div>
     <% } %> <% if(typeof feedback != 'undefined') {%>
-        <div class="successFeedback"><%= feedback %></div>
+    <div class="successFeedback"><%= feedback %></div>
     <% } %>
 </div>
 
-   <form method="Post" action="/booking/update-user">
-    <input type="hidden" name="_csrf" value = "<%= csrfToken %>">
-      <div>
-          <label for=""> Phone Number </label>
-          <input type="number" name="phone_number" value="<%= user.phone%>" readonly>
-      </div>
-      
-      <div>
-          <label for=""> Name</label>
-          <input type="text" name="name">
-      </div>
+<form method="Post" action="">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div>
+        <label for=""> Phone Number </label>
+        <input type="number" name="phone" value="<%= user.phone%>">
+    </div>
 
-       
-      <div>
-        <label for="">Password</label>
-        <input type="password" name="password">
-      </div>
+    <div>
+        <label for=""> Name</label>
+        <input type="text" name="name" value="<%= user.name%>">
+    </div>
 
-      <button  type="submit">submit</button>
-      </form>
-
+    <button type="submit">submit</button>
+</form>

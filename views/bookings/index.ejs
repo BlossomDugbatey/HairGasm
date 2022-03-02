@@ -1,20 +1,14 @@
 <div>
     <h2>BOOKINGS</h2>
+    <button><a href="/slots">Book Us</a></button>
 </div>
-
-<!-- <div>
-    <% if (typeof bookings != 'undefined') {%>
-        <% bookings.forEach((booking) => {%>
-            <p><%= booking.user.name %> </p>
-            <p>Booking Date: <%= booking.slot.date %></p>
-            <p>Service: <%= booking.service %> </p>
-
-        <% }) %> 
-    <%}%> 
-</div> -->
-
-
 <div>
+    <% if (typeof activeNav !== 'undefined') {%>   
+        "class = activeNav"
+        <% } else { %>
+         <p>No nav found</p> <% } %>  
+</div>
+<div class="bookings">
     <% if (typeof bookings != 'undefined') {%>
         <% for(var i = 0; i < users.length; i++) { %>
             <p><%= users[i].name %> | <%= users[i].phone %></p>
@@ -26,5 +20,4 @@
             <% } %>
         <% } %>
     <%}%> 
-   <button><a href="/slots">Book Us</a></button>
 </div>

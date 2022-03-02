@@ -28,7 +28,7 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: {secure: false, maxAge: 5 * 60 * 1000 }
+  cookie: {secure: false, maxAge: 30 * 60 * 1000 }
 }))
 
 app.use(cors());

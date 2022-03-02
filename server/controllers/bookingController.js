@@ -4,6 +4,7 @@ const Booking = require('../models/Booking')
 const FailedBooking = require('../models/FailedBooking')
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
+const Util = require('./authorization');
 
 //checking if a user exists , if not save and return the user
 const getUser = async(phone_number) => {
@@ -22,19 +23,22 @@ const getUser = async(phone_number) => {
 }
 //booking
 exports.booking = async(req,res) => {
+    const authorizedRoles = ["admin", "user"]
+    return Util.authorization(req,res,authorizedRoles);
     const bookings = await Booking.find({}).populate("user").populate("slot")
     const users = await  User.find({})
-    res.render('bookings/index', {title: "Home", bookings, users})
+    res.render('bookings/index', {title: "Home", activeNav: "booking", bookings, users})
 }
 exports.add = async(req,res) => {
+    const authorizedRoles = ["admin","user"]
+    Util.authorization(req,res,authorizedRoles);
     const slot = await Slot.findById(req.params.slot_id)
-    res.render('bookings/add', {title: "Add-Booking", slot, csrfToken: req.csrfToken()})
+    res.render('bookings/add', {title: "Add-Booking",activeNav: "booking", slot, csrfToken: req.csrfToken()})
 }
 exports.save = async(req,res) => {
-    let phone_number = req.body.phone
- 
-    const user = await getUser(phone_number)
-    const slot = await Slot.findById(req.params.slot_id)
+    let phone_number = req.body.phone;
+    const user = await getUser(phone_number);
+    const slot = await Slot.findById(req.params.slot_id);
 
 //     //check if the available slot is greater than zero
     if (slot.quantity > 0) {
@@ -45,14 +49,15 @@ exports.save = async(req,res) => {
         })
     
         await booking.save();
+        console.log(booking);
         
         //reduce number of slots after saving a successful booking
         slot.quantity -= 1;
         await slot.save()
         if (!user.name){
-           return res.render('users/edit', {user, feedback: "Hello, let us know your name.", csrfToken: req.csrfToken()})
+           return res.render('users/edit', {user,activeNav: "booking", feedback: "Hello, let us know your name.", csrfToken: req.csrfToken()})
         }else {
-           return res.render('users/index', {feedback: "Thank You" + user.name + "!"})
+           return res.render('users/index', {activeNav: "booking",feedback: "Thank You" + " " + user.name + "for booking our service", booking})
         }
        
         // res.render('bookings/add', {slot, success: "Your booking was successful"})
@@ -64,9 +69,8 @@ exports.save = async(req,res) => {
             service: req.body.service
         })
         await failedBooking.save()
-        res.render('bookings/add', {slot, error: "Your booking failed"})
+        res.render('bookings/add', {title: "Booking", activeNav: "booking", slot, error: "Your booking failed"})
     }
-   
  }
 
 exports.updateUser = async(req,res) => {

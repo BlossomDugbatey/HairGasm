@@ -1,0 +1,20 @@
+
+<form method="Post" action="">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div>
+        <label for="phone_number"> Phone Number </label>
+        <input type="number" name="phone">
+    </div>
+
+    <div>
+        <label for="name"> Name</label>
+        <input type="text" name="name">
+    </div>
+    
+    <div>
+        <label for="password"> Password</label>
+        <input type="password" name="password">
+    </div>
+
+    <button type="submit">submit</button>
+</form>
