@@ -7,7 +7,7 @@ exports.user = async (req, res) => {
     const authorizedRoles = ["admin"]
     Util.authorization(req,res,authorizedRoles);
     const users = await User.find({})
-    return res.render('users/userView', {title: "user", activeNav: "users", users})
+    res.render('users/userView', {title: "user", activeNav: "users", users})
 }
 
 // exports.logout =async(req,res)=>{
@@ -21,7 +21,7 @@ exports.edit = async (req, res) => {
     res.locals.csrfToken = req.csrfToken()
     const user = await User.findById(req.params.id)
     console.log(user)
-    return res.render("users/edit", {
+    res.render("users/edit", {
         title: "User Form",
         activeNav: "users",
         user
@@ -42,7 +42,7 @@ exports.add = async (req, res) => {
     const authorizedRoles = ["admin"]
     Util.authorization(req,res,authorizedRoles);
     res.locals.csrfToken = req.csrfToken()
-    return res.render("users/add", {
+    res.render("users/add", {
         title: "User From",
         activeNav: "users"
     })
@@ -62,7 +62,7 @@ exports.delete = async (req, res) => {
     Util.authorization(req,res,authorizedRoles);
     res.locals.csrfToken = req.csrfToken()
     const user = await User.findById(req.params.id)
-    return res.render("users/delete", {
+    res.render("users/delete", {
         title: "User Form",
         activeNav: "users",
         user
@@ -74,3 +74,32 @@ exports.deleteConfirm = async (req, res) => {
     })
     res.redirect(302, "/users")
 }
+
+exports.profile = async (req,res) => {
+    res.render("users/profile", {title:"profile", activeNav: "profile", message: req.flash().success});
+}
+
+exports.changePassword = async (req,res) => {
+    res.locals.csrfToken = req.csrfToken();
+    res.render("users/changePassword",{title: "Change Password", activeNav: "profile"});
+}
+
+exports.submitPassword = async (req,res) => {
+    res.locals.csrfToken = req.csrfToken();
+    const currentPasswordVerification = await bcrypt.compare(req.body.current_password, req.user.password);
+    if (!currentPasswordVerification) {
+        req.flash("error", "Incorrect Password")
+    } else {
+        const confirmPasswordUpdate = req.body.new_password === req.body.confirm_password;
+        if (!confirmPasswordUpdate) {
+            req.flash("error", "Password don't match")
+        } else {
+            const newHashedPassword = await bcrypt.hash(req.body.new_password, 10);
+            await User.updateOne({_id: req.user._id}, {password: newHashedPassword})
+            req.flash("success", "Password Changed Successfully")
+            return res.redirect('/profile')
+        }
+    }
+    res.render("users/changePassword",{title: "Change Password", activeNav: "profile", message: req.flash().error});
+}
+

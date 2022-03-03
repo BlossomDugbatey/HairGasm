@@ -89,7 +89,8 @@ const userNavigation = (req,res,next) => {
         }
     }
     if(req.isAuthenticated()){
-        navigations.push({href: "/logout", name: "LogOut"});
+        logoutNav = [{href:"/profile",name:"Profile", activeName:"profile"},{href: "/logout", name: "LogOut"}]
+        navigations = navigations.concat(logoutNav);
     }else{
         navigations.push({href: "/login", name: "LogIn"});
     }
@@ -108,8 +109,10 @@ router.post('/login', passport.authenticate("local",{failureRedirect: '/login', 
 
 router.use(checkLoggedIn)
 router.use(userNavigation)
-router.get('/profile', controller.profile);
+router.get('/profile', userController.profile);
 router.get('/users', userController.user);
+router.get('/change-password', userController.changePassword);
+router.post('/change-password', userController.submitPassword);
 router.get('/user-edit/:id', userController.edit);
 router.get('/user-add', userController.add);
 router.get('/user-delete/:id',userController.delete);
