@@ -17,6 +17,10 @@ const Schema = new mongoose.Schema ({
     role : {
         type: String,
         default: 'user',
+    },
+    force_change_password : {
+        type: Boolean,
+        default: false,
     }
 })
 module.exports = mongoose.model('User', Schema)

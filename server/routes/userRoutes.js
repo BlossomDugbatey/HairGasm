@@ -39,7 +39,26 @@ passport.deserializeUser(function(user, cb) {
     return cb (null,user);
 });
 
-
+//enforce user to change password
+const enforcePasswordChange = async (req,res,next) => {
+    res.locals.csrfToken = req.csrfToken();
+    const force_change = req.body.force_change || false;
+    if ((req.isAuthenticated()) && (force_change !== 'undefined') && (force_change === false)) {
+        const user = await User.findById(req.user._id)
+        const forcePasswordChange = user.force_change_password || false
+        if (forcePasswordChange){
+            console.log(true)
+            res.render("users/changePassword", {title: "Force Password", activeNav: "users", force_change: 1})
+        } else {
+            console.log("middle man")
+            next()
+        }
+    } else {
+        console.log("next man")
+        next()
+    }
+}
+//track login
 const loginTracker = async(req, user) => {
     const session = req.session;
 
@@ -109,10 +128,14 @@ router.post('/login', passport.authenticate("local",{failureRedirect: '/login', 
 
 router.use(checkLoggedIn)
 router.use(userNavigation)
+// router.use(enforcePasswordChange)
+
 router.get('/profile', userController.profile);
 router.get('/users', userController.user);
 router.get('/change-password', userController.changePassword);
 router.post('/change-password', userController.submitPassword);
+router.get('/force-change-password/:id', userController.forcePassword);
+router.post('/force-change-password/:id', userController.forcePasswordUpdate);
 router.get('/user-edit/:id', userController.edit);
 router.get('/user-add', userController.add);
 router.get('/user-delete/:id',userController.delete);

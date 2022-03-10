@@ -4,12 +4,13 @@
     <% if(typeof users != 'undefined') {%>
         <% users.forEach((user) => {%>
           <p>User Name: <%- user.name %> </p>   
-          <p>Phone Number: <%- user.phone %> </p> 
-         
+          <p>Phone Number: <%- user.phone %> </p>      
           <p>User role: <%- user.role %> </p>
           <p>Status: <%- user.active %> </p>
+          <p>Force User to change password: <%- user.force_change_password %></p>
           <a href="/user-edit/<%= user._id %>">Edit User</a>
           <a href="/user-delete/<%= user._id%>">Delete User</a>
+          <a href="/force-change-password/<%= user._id%>">Change Password</a>
           <hr>
         <% }) %> 
     <% } %>   

@@ -81,10 +81,11 @@ exports.profile = async (req,res) => {
 
 exports.changePassword = async (req,res) => {
     res.locals.csrfToken = req.csrfToken();
-    res.render("users/changePassword",{title: "Change Password", activeNav: "profile"});
+    res.render("users/changePassword",{title: "Change Password", activeNav: "profile", force_change: 0});
 }
 
 exports.submitPassword = async (req,res) => {
+    console.log(req.body)
     res.locals.csrfToken = req.csrfToken();
     const currentPasswordVerification = await bcrypt.compare(req.body.current_password, req.user.password);
     if (!currentPasswordVerification) {
@@ -95,7 +96,7 @@ exports.submitPassword = async (req,res) => {
             req.flash("error", "Password don't match")
         } else {
             const newHashedPassword = await bcrypt.hash(req.body.new_password, 10);
-            await User.updateOne({_id: req.user._id}, {password: newHashedPassword})
+            await User.updateOne({_id: req.user._id}, {password: newHashedPassword, force_change_password: false})
             req.flash("success", "Password Changed Successfully")
             return res.redirect('/profile')
         }
@@ -103,3 +104,17 @@ exports.submitPassword = async (req,res) => {
     res.render("users/changePassword",{title: "Change Password", activeNav: "profile", message: req.flash().error});
 }
 
+exports.forcePassword = async (req,res) => {
+    const authorizedRoles = ["admin"]
+    Util.authorization(req,res,authorizedRoles); 
+    res.locals.csrfToken = req.csrfToken();
+    res.render("users/forceChangePassword", {title: "Force Password", activeNav: "users", message: req.flash().error})
+}
+
+exports.forcePasswordUpdate = async (req,res) => {
+    if (req.body.force_change_password) {
+        const user = await User.updateOne({ _id: req.params.id}, {force_change_password: true});
+    }
+        res.redirect('/users')
+    // const user = await User.findById({})  
+}

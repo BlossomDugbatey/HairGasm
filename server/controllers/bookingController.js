@@ -24,7 +24,7 @@ const getUser = async(phone_number) => {
 //booking
 exports.booking = async(req,res) => {
     const authorizedRoles = ["admin", "user"]
-    return Util.authorization(req,res,authorizedRoles);
+    Util.authorization(req,res,authorizedRoles);
     const bookings = await Booking.find({}).populate("user").populate("slot")
     const users = await  User.find({})
     res.render('bookings/index', {title: "Home", activeNav: "booking", bookings, users})
